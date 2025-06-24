@@ -7,11 +7,11 @@ const groups = [
     url: "https://chat.whatsapp.com/KECbkstsurP7p8xWujTkDn"
   },
   {
-    name: "💼 Job Referrals 2",
+    name: "💼 Job Referrals",
     url: "https://chat.whatsapp.com/CZemDAeJcN46Wnq0D5nwoV"
   },
   {
-    name: "🏠 Apartments 2",
+    name: "🏠 Apartments",
     url: "https://chat.whatsapp.com/JRfW5oVWN21KlMoaKcpkXc"
   },
   {

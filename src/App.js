@@ -3,7 +3,7 @@ import './App.css';
 
 const groups = [
   {
-    name: "🏳️‍🌈 Inder Von Berlin 🏳️‍🌈",
+    name: "🇮🇳 Inder Von Berlin 🏳️‍🌈",
     url: "https://chat.whatsapp.com/KECbkstsurP7p8xWujTkDn"
   },
   {

@@ -3,7 +3,7 @@ import './App.css';
 
 const groups = [
   {
-    name: "Inder Von Berlin 🏳️‍🌈🌈",
+    name: "Inder Von Berlin 🏳️‍🌈",
     url: "https://chat.whatsapp.com/KECbkstsurP7p8xWujTkDn"
   },
   {
@@ -20,7 +20,7 @@ const groups = [
   },
   {
     name: "Cricket",
-    url: "https://chat.whatsapp.com/ERpUJNxVfh0F9AmneGs9Xj"
+    url: "https://chat.whatsapp.com/BJfYygj5dU44gy2qX7IEW0"
   },
   {
     name: "Swimming & Watersports Club",
@@ -36,19 +36,19 @@ const groups = [
   },
   {
     name: "Sell and Free Your Stuff",
-    url: "https://chat.whatsapp.com/HcpRV4WhIdH7duDmu7fe35"
+    url: "https://chat.whatsapp.com/DqaUC0nNLwa800kMhCUTIb"
   },
   {
     name: "The shayari club",
     url: "https://chat.whatsapp.com/IMASOorpeiEFZ76JqJetr3"
   },
   {
-    name: "Finance and Investments",
-    url: "https://chat.whatsapp.com/EeMJH1AEvQfKRY9tQHNQVh"
+    name: "Wallstraße Bets",
+    url: "https://chat.whatsapp.com/DdUWFU4JwwX52Wonbb0UCk"
   },
   {
     name: "Part Time Work and Student Jobs",
-    url: "https://chat.whatsapp.com/KvRJbclWpFf6cnKebuxCmM"
+    url: "https://chat.whatsapp.com/ES04wAnUHoo5aBiGT7SopB"
   },
   {
     name: "Quizzing & Trivia",
@@ -56,51 +56,51 @@ const groups = [
   },
   {
     name: "Deutsch Lernen",
-    url: "https://chat.whatsapp.com/FvWeNuUwXZkFkv7Ph9RuMR"
+    url: "https://chat.whatsapp.com/DF0FcxshVcQ6TEmmd8IGQb"
   },
   {
     name: "Parties and Events",
-    url: "https://chat.whatsapp.com/DmthwCQqKWmDjN7nqXqMRZ"
+    url: "https://chat.whatsapp.com/Gzhl5xqom0n3hZkYW6sXkX"
   },
   {
     name: "Berliners' Book Club",
-    url: "https://chat.whatsapp.com/Gar8WS5fLYn9Vw0g2KObey"
+    url: "https://chat.whatsapp.com/LtNoaQNBeGl3nodRXkBeZr"
   },
   {
     name: "Hiking and Camping Club",
-    url: "https://chat.whatsapp.com/HJ0iix2AZAhCozCMdfXk0u"
+    url: "https://chat.whatsapp.com/FX4Kd04n61aFOJpwX9hGjl"
   },
   {
     name: "Parenting 101",
-    url: "https://chat.whatsapp.com/F83DoQbIa6Z3gP4xNWjEqd"
+    url: "https://chat.whatsapp.com/BODiF5DIZdlD9AQTmIPnrZ"
   },
   {
     name: "ADHD Support",
-    url: "https://chat.whatsapp.com/BuAVkZclmJdLFzXkkxQszk"
+    url: "https://chat.whatsapp.com/E8Z3YltP2jA4y2JOAtfi2u"
   },
   {
     name: "Health and Fitness",
-    url: "https://chat.whatsapp.com/D6TQK3S7zBpBRKMp9KGVwy"
+    url: "https://chat.whatsapp.com/Gfc5Ji3DhDuEvUbZWCFvHo"
   },
   {
     name: "Sports",
-    url: "https://chat.whatsapp.com/IoYdZapiPsYJAyX6P3EpKc"
+    url: "https://chat.whatsapp.com/L4TAL37NloP8Sxb0vAfXRO"
   },
   {
     name: "Travel",
-    url: "https://chat.whatsapp.com/LCLppmw4i9IF8PI9km2HKp"
+    url: "https://chat.whatsapp.com/IaNlOS4g6ibLcJx6hrERo5"
   },
   {
     name: "Berlin Culinary Reviews and Recommendations",
-    url: "https://chat.whatsapp.com/JYC1a90Ot4c0QWdBrosq8Q"
+    url: "https://chat.whatsapp.com/IHf6w0v6f6s8lGue49gCuM"
   },
   {
     name: "Gaming PS/XBox/PC",
-    url: "https://chat.whatsapp.com/D8ylTzjmJ2qLoE3pxocPrr"
+    url: "https://chat.whatsapp.com/EEIbGI8Ep7LGYoE7U2WBv5"
   },
   {
     name: "Dance Berlin",
-    url: "https://chat.whatsapp.com/KGSMK0EMQJE9tS4RNi63KN"
+    url: "https://chat.whatsapp.com/CTKS7eeobrD83Nm2kHoD6n"
   }
 ];
 

@@ -12,7 +12,7 @@ const groups = [
   },
   {
     name: "🏠 Apartments",
-    url: "https://chat.whatsapp.com/JRfW5oVWN21KlMoaKcpkXc"
+    url: "https://chat.whatsapp.com/DE968pJqGy1FCVgRzYe2MN"
   },
   {
     name: "💻 Berlin Tech Scene",

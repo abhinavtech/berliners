@@ -32,6 +32,13 @@ export const groups = [
     subcategory: 'Activities'
   },
   {
+    id: 'comedy',
+    name: "🎤 Comedy",
+    url: "https://chat.whatsapp.com/HsxLIgZY4PfKOjlgVJ3qgp",
+    category: 'Social',
+    subcategory: 'Activities'
+  },
+  {
     id: 'swimming',
     name: "🏊‍♂️ Swimming & Watersports Club",
     url: "https://chat.whatsapp.com/IbshS8hGcUyCoa9ChA7UB8",

@@ -179,5 +179,19 @@ export const groups = [
     url: "https://chat.whatsapp.com/IbYS8KW9RYe2TTM6WWdY49",
     category: 'Social',
     subcategory: 'Activities'
-  }
+  },
+  {
+    id: 'plants',
+    name: "🪴 Plants",
+    url: "https://chat.whatsapp.com/IwlT3zbuGURETcRqifnjbY",
+    category: 'Social',
+    subcategory: 'Activities'
+  },
+  {
+    id: 'pop-culture-connect',
+    name: "🎬 Pop Culture Connect - Anime, Movies, Series & More",
+    url: "https://chat.whatsapp.com/KJvGjoxOIZ058T1NCTAI4G",
+    category: 'Social',
+    subcategory: 'Activities'
+  },
 ];

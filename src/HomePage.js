@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import { groups } from './groups';
 
@@ -13,10 +13,40 @@ function extractEmojiAndName(name) {
 }
 
 function HomePage() {
+  const [copiedGroupId, setCopiedGroupId] = useState(null);
+  const longPressTimer = useRef(null);
+  const isLongPress = useRef(false);
+
   const handleGroupClick = (groupUrl, groupName) => {
-    setTimeout(() => {
-      window.open(groupUrl, '_blank', 'noopener,noreferrer');
-    }, 150);
+    if (!isLongPress.current) {
+      setTimeout(() => {
+        window.open(groupUrl, '_blank', 'noopener,noreferrer');
+      }, 150);
+    }
+    isLongPress.current = false;
+  };
+
+  const handleLongPressStart = (groupId) => {
+    isLongPress.current = false;
+    longPressTimer.current = setTimeout(() => {
+      isLongPress.current = true;
+      const baseUrl = window.location.origin + window.location.pathname;
+      const groupLink = `${baseUrl}#/group/${groupId}`;
+      
+      navigator.clipboard.writeText(groupLink).then(() => {
+        setCopiedGroupId(groupId);
+        setTimeout(() => setCopiedGroupId(null), 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }, 500);
+  };
+
+  const handleLongPressEnd = () => {
+    if (longPressTimer.current) {
+      clearTimeout(longPressTimer.current);
+      longPressTimer.current = null;
+    }
   };
 
   const categories = ['Work', 'Housing', 'Social', 'Regional'];
@@ -55,11 +85,17 @@ function HomePage() {
                       <button
                         key={group.id}
                         onClick={() => handleGroupClick(group.url, group.name)}
-                        className="tile-button"
+                        onMouseDown={() => handleLongPressStart(group.id)}
+                        onMouseUp={handleLongPressEnd}
+                        onMouseLeave={handleLongPressEnd}
+                        onTouchStart={() => handleLongPressStart(group.id)}
+                        onTouchEnd={handleLongPressEnd}
+                        className={`tile-button ${copiedGroupId === group.id ? 'copied' : ''}`}
                         type="button"
                       >
                         <span className="tile-emoji">{emoji}</span>
                         <span className="tile-name">{rest}</span>
+                        {copiedGroupId === group.id && <span className="copied-indicator">Copied!</span>}
                       </button>
                     );
                   })}
@@ -84,11 +120,17 @@ function HomePage() {
                             <button
                               key={group.id}
                               onClick={() => handleGroupClick(group.url, group.name)}
-                              className="tile-button"
+                              onMouseDown={() => handleLongPressStart(group.id)}
+                              onMouseUp={handleLongPressEnd}
+                              onMouseLeave={handleLongPressEnd}
+                              onTouchStart={() => handleLongPressStart(group.id)}
+                              onTouchEnd={handleLongPressEnd}
+                              className={`tile-button ${copiedGroupId === group.id ? 'copied' : ''}`}
                               type="button"
                             >
                               <span className="tile-emoji">{emoji}</span>
                               <span className="tile-name">{rest}</span>
+                              {copiedGroupId === group.id && <span className="copied-indicator">Copied!</span>}
                             </button>
                           );
                         })}

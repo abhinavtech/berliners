@@ -49,7 +49,7 @@ function HomePage() {
     }
   };
 
-  const categories = ['Work', 'Housing', 'Social', 'Regional', 'Events'];
+  const categories = ['Work', 'Housing', 'Social', 'Regional'];
   const socialSubcategories = ['Activities', 'General'];
 
   return (

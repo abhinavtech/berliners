@@ -194,10 +194,4 @@ export const groups = [
     category: 'Social',
     subcategory: 'Activities'
   },
-  {
-    id: 'potluck',
-    name: "🍽️ Potluck 2025 - 30th August",
-    url: "https://chat.whatsapp.com/F07UJx0DElg61nSUvTymkB",
-    category: 'Events'
-  },
 ];

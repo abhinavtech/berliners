@@ -336,4 +336,39 @@ h2 {
     opacity: 0;
     transform: translateX(-50%) translateY(5px);
   }
+}
+
+/* Event tile styles */
+.event-tile {
+  height: auto !important;
+  min-height: 160px !important;
+  max-height: none !important;
+  padding: 1rem 0.5rem !important;
+}
+
+.event-date {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #666;
+  margin-top: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .event-tile {
+    min-height: 130px !important;
+    height: auto !important;
+  }
+  
+  .event-date {
+    font-size: 0.6rem;
+  }
+}
+
+/* Navigation link styles */
+.nav-link:hover {
+  color: #2d3748 !important;
+  text-decoration: underline !important;
 } 

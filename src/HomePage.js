@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import { groups } from './groups';
 
@@ -68,6 +69,16 @@ function HomePage() {
           <div className="glass-header">
             <h1 className="profile-title">Berliners Community</h1>
             <p className="profile-subtitle">Connect with fellow Berliners through WhatsApp groups</p>
+            <Link to="/events" className="nav-link" style={{
+              display: 'inline-block',
+              marginTop: '1rem',
+              color: '#4a5568',
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: '0.9rem'
+            }}>
+              📅 View Upcoming Events →
+            </Link>
           </div>
         </div>
         {categories.map((cat, idx) => {

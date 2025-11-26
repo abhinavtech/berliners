@@ -1,5 +1,5 @@
-export const events = [
-  {
+export const events = []
+/**  {
     id: 'winter-potluck-2024',
     name: "🍲 Winter Potluck Dinner",
     emoji: "🍲",
@@ -88,3 +88,4 @@ export const events = [
     rsvpUrl: "https://chat.whatsapp.com/example8"
   }
 ];
+**/

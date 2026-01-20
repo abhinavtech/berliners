@@ -136,7 +136,7 @@ function EventPage() {
             e.target.style.boxShadow = '0 4px 15px rgba(37, 211, 102, 0.3)';
           }}
         >
-          💬 RSVP on WhatsApp
+          RSVP Here
         </button>
 
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>

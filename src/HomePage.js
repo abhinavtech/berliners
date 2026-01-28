@@ -1,163 +1,91 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
 import { groups } from './groups';
-
-function extractEmojiAndName(name) {
-  const emojiMatch = name.match(/^(\p{Emoji_Presentation}|\p{Emoji}\uFE0F|\p{Emoji_Modifier_Base}|\p{Emoji_Component}|\p{Extended_Pictographic})+/u);
-  if (emojiMatch) {
-    const emoji = emojiMatch[0];
-    const rest = name.replace(emoji, '').trim();
-    return { emoji, rest };
-  }
-  return { emoji: '', rest: name };
-}
+import { useLongPress } from './hooks/useLongPress';
+import { extractEmojiAndName, generateShareableLink } from './utils/formatters';
+import { GROUP_CATEGORIES, SOCIAL_SUBCATEGORIES } from './utils/constants';
+import Layout from './components/Layout';
 
 function HomePage() {
-  const [copiedGroupId, setCopiedGroupId] = useState(null);
-  const longPressTimer = useRef(null);
-  const isLongPress = useRef(false);
+  const { copiedId, wasLongPress, getLongPressHandlers } = useLongPress();
 
-  const handleGroupClick = (groupUrl, groupName) => {
-    if (!isLongPress.current) {
+  const handleGroupClick = (groupUrl) => {
+    if (!wasLongPress()) {
       setTimeout(() => {
         window.open(groupUrl, '_blank', 'noopener,noreferrer');
       }, 150);
     }
-    isLongPress.current = false;
   };
 
-  const handleLongPressStart = (groupId) => {
-    isLongPress.current = false;
-    longPressTimer.current = setTimeout(() => {
-      isLongPress.current = true;
-      const baseUrl = window.location.origin + window.location.pathname;
-      const groupLink = `${baseUrl}#/group/${groupId}`;
-      
-      navigator.clipboard.writeText(groupLink).then(() => {
-        setCopiedGroupId(groupId);
-        setTimeout(() => setCopiedGroupId(null), 2000);
-      }).catch(err => {
-        console.error('Failed to copy:', err);
-      });
-    }, 500);
-  };
+  const groupLinkGenerator = (groupId) => generateShareableLink(`/group/${groupId}`);
 
-  const handleLongPressEnd = () => {
-    if (longPressTimer.current) {
-      clearTimeout(longPressTimer.current);
-      longPressTimer.current = null;
-    }
+  const renderGroupButton = (group) => {
+    const { emoji, rest } = extractEmojiAndName(group.name);
+    return (
+      <button
+        key={group.id}
+        onClick={() => handleGroupClick(group.url)}
+        {...getLongPressHandlers(group.id, groupLinkGenerator)}
+        className={`tile-button ${copiedId === group.id ? 'copied' : ''}`}
+        type="button"
+        aria-label={`Join ${rest} WhatsApp group`}
+      >
+        <span className="tile-emoji" aria-hidden="true">{emoji}</span>
+        <span className="tile-name">{rest}</span>
+        {copiedId === group.id && <span className="copied-indicator">Copied!</span>}
+      </button>
+    );
   };
-
-  const categories = ['Work', 'Housing', 'Social', 'Regional'];
-  const socialSubcategories = ['Activities', 'General'];
 
   return (
-    <div 
-      className="App"
-      style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/berliners.png)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <div className="container">
-        <div className="profile-section">
-          <div className="glass-header">
-            <h1 className="profile-title">Berliners Community</h1>
-            <p className="profile-subtitle">Connect with fellow Berliners through WhatsApp groups</p>
-            <Link to="/events" className="nav-link" style={{
-              display: 'inline-block',
-              marginTop: '1rem',
-              color: '#4a5568',
-              textDecoration: 'none',
-              fontWeight: 600,
-              fontSize: '0.9rem'
-            }}>
-              📅 View Upcoming Events →
-            </Link>
-          </div>
+    <Layout>
+      <header className="profile-section">
+        <div className="glass-header">
+          <h1 className="profile-title">Berliners Community</h1>
+          <p className="profile-subtitle">Connect with fellow Berliners through WhatsApp groups</p>
+          <Link to="/events" className="nav-link header-nav-link" aria-label="View upcoming events">
+            📅 View Upcoming Events →
+          </Link>
         </div>
-        {categories.map((cat, idx) => {
+      </header>
+
+      <main>
+        {GROUP_CATEGORIES.map((cat, idx) => {
           if (cat !== 'Social') {
             const catGroups = groups.filter(g => g.category === cat);
             if (!catGroups.length) return null;
             return (
-              <div key={cat} style={{marginBottom: '2.5rem'}}>
+              <section key={cat} className="category-section" aria-labelledby={`category-${cat}`}>
                 {idx !== 0 && <hr className="category-separator" />}
-                <h2 style={{textAlign: 'center', fontSize: '1.4rem', fontWeight: 700, margin: '1.5rem 0 1rem 0', color: '#222', letterSpacing: '-0.5px'}}>{cat}</h2>
+                <h2 id={`category-${cat}`} className="category-heading">{cat}</h2>
                 <div className="links-section grid-tiles">
-                  {catGroups.map((group) => {
-                    const { emoji, rest } = extractEmojiAndName(group.name);
-                    return (
-                      <button
-                        key={group.id}
-                        onClick={() => handleGroupClick(group.url, group.name)}
-                        onMouseDown={() => handleLongPressStart(group.id)}
-                        onMouseUp={handleLongPressEnd}
-                        onMouseLeave={handleLongPressEnd}
-                        onTouchStart={() => handleLongPressStart(group.id)}
-                        onTouchEnd={handleLongPressEnd}
-                        className={`tile-button ${copiedGroupId === group.id ? 'copied' : ''}`}
-                        type="button"
-                      >
-                        <span className="tile-emoji">{emoji}</span>
-                        <span className="tile-name">{rest}</span>
-                        {copiedGroupId === group.id && <span className="copied-indicator">Copied!</span>}
-                      </button>
-                    );
-                  })}
+                  {catGroups.map(renderGroupButton)}
                 </div>
-              </div>
+              </section>
             );
           } else {
             return (
-              <div key={cat} style={{marginBottom: '2.5rem'}}>
+              <section key={cat} className="category-section" aria-labelledby={`category-${cat}`}>
                 {idx !== 0 && <hr className="category-separator" />}
-                <h2 style={{textAlign: 'center', fontSize: '1.4rem', fontWeight: 700, margin: '1.5rem 0 1rem 0', color: '#222', letterSpacing: '-0.5px'}}>{cat}</h2>
-                {socialSubcategories.map((subcat) => {
+                <h2 id={`category-${cat}`} className="category-heading">{cat}</h2>
+                {SOCIAL_SUBCATEGORIES.map((subcat) => {
                   const subcatGroups = groups.filter(g => g.category === 'Social' && g.subcategory === subcat);
                   if (!subcatGroups.length) return null;
                   return (
-                    <div key={subcat} style={{marginBottom: '1.5rem'}}>
-                      <h3 className="subcategory-heading" style={{textAlign: 'center', fontSize: '1.1rem', fontWeight: 600, margin: '1rem 0 0.5rem 0', color: '#444', letterSpacing: '-0.5px'}}>{subcat}</h3>
+                    <div key={subcat} className="subcategory-section">
+                      <h3 className="subcategory-heading">{subcat}</h3>
                       <div className="links-section grid-tiles">
-                        {subcatGroups.map((group) => {
-                          const { emoji, rest } = extractEmojiAndName(group.name);
-                          return (
-                            <button
-                              key={group.id}
-                              onClick={() => handleGroupClick(group.url, group.name)}
-                              onMouseDown={() => handleLongPressStart(group.id)}
-                              onMouseUp={handleLongPressEnd}
-                              onMouseLeave={handleLongPressEnd}
-                              onTouchStart={() => handleLongPressStart(group.id)}
-                              onTouchEnd={handleLongPressEnd}
-                              className={`tile-button ${copiedGroupId === group.id ? 'copied' : ''}`}
-                              type="button"
-                            >
-                              <span className="tile-emoji">{emoji}</span>
-                              <span className="tile-name">{rest}</span>
-                              {copiedGroupId === group.id && <span className="copied-indicator">Copied!</span>}
-                            </button>
-                          );
-                        })}
+                        {subcatGroups.map(renderGroupButton)}
                       </div>
                     </div>
                   );
                 })}
-              </div>
+              </section>
             );
           }
         })}
-        <div className="footer">
-          <p>Built with ❤️ for the Berlin community by Abhinav</p>
-        </div>
-      </div>
-    </div>
+      </main>
+    </Layout>
   );
 }
 

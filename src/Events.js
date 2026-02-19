@@ -1,4 +1,6 @@
-export const events = [{
+export const events = []
+/**  
+  {
     id: 'republic-day-2026',
     name: "🇮🇳 Republic Day 2026 Celebration",
     emoji: "🇮🇳",
@@ -8,8 +10,8 @@ export const events = [{
     description: "The Embassy of India in Berlin invites members of the Indian community and friends of India to attend the Flag Unfurling Ceremony on the occasion of the 77th Republic Day of India.\n\nThe ceremony will take place at the Embassy premises, followed by a cultural programme. The flag unfurling will be conducted in the front courtyard of the Embassy, while the cultural programme will be held in the auditorium.\n\nImportant Information:\n\n- Participation is by prior registration only.\n- Indian nationals must carry a valid Indian passport.\n- OCI cardholders must carry their valid OCI card.\n- German/EU citizens must carry a valid passport or official photo ID (Ausweis).\n- No bags are allowed on the premises.\n- There is no seating available in the courtyard during the flag unfurling.\n- Seating in the auditorium is limited and reserved for senior citizens and persons with disabilities (PWDs).\n\nEvent Details:\n\n- Date: Monday, 26 January 2026\n- Time: 09:15 – 11:00\n- Venue: Embassy of India, Tiergartenstraße 17, 10785 Berlin\n\nJoin in to commemorate India’s Republic Day and celebrate the spirit of democracy and unity.",
     category: 'Social',
     rsvpUrl: "https://indianembassyberlin.gov.in/Republic_day_2026"
-  }]
-/**  {
+  },
+  {
     id: 'winter-potluck-2024',
     name: "🍲 Winter Potluck Dinner",
     emoji: "🍲",
